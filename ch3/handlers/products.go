@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"ch3/data"
-	"encoding/json"
 	"log"
 	"net/http"
 )
@@ -17,9 +16,11 @@ func NewProducts(l *log.Logger) *Products {
 
 func (p *Products) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	lp := data.GetProduct()
-	d, err := json.Marshal(lp)
+	// Uses custom encoder in the data
+	// better composition of marshalling step of the data
+	err := lp.ToJSON(w)
 	if err != nil {
 		http.Error(w, "Unable to marshall data", http.StatusInternalServerError)
 	}
-	w.Write(d)
+	// w.Write(d)
 }

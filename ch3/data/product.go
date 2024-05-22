@@ -1,6 +1,10 @@
 package data
 
-import "time"
+import (
+	"encoding/json"
+	"io"
+	"time"
+)
 
 type Product struct {
 	ID          int     `json:"id"`
@@ -15,16 +19,17 @@ type Product struct {
 
 type Products []*Product
 
+// json.NewEncoder is significantly faster than using the marshall method
 func (p *Products) ToJSON(w io.Writer) error {
 	e := json.NewEncoder(w)
 	return e.Encode(p)
 }
 
-func GetProduct() []*Product {
+func GetProduct() Products {
 	return productList
 }
 
-var productList = []*Product{
+var productList = Products{
 	{
 		ID:          1,
 		Name:        "latte",
