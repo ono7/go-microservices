@@ -33,7 +33,7 @@ var productList = Products{
 	{
 		ID:          1,
 		Name:        "latte",
-		Description: "Frothy milky coffee",
+		Description: "Frothy milky coffee, very nice!",
 		Price:       2.45,
 		SKU:         "abc123",
 		CreatedOn:   time.Now().UTC().String(),
