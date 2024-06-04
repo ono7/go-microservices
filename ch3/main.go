@@ -47,7 +47,7 @@ func main() {
 		}
 	}()
 
-	sigchan := make(chan os.Signal)
+	sigchan := make(chan os.Signal, 1)
 	signal.Notify(sigchan, os.Interrupt)
 	signal.Notify(sigchan, os.Kill)
 
